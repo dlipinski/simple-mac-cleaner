@@ -43,6 +43,8 @@ dependencies:
   desktop_disk_space: ^0.0.1
   path_provider: ^2.1.1
   window_manager: ^0.3.7
+  flutter_acrylic: ^1.1.3
+  font_awesome_flutter: ^10.6.0
 
 dev_dependencies:
   flutter_test:

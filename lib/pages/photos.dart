@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:mac_cleaner/helpers/global.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PhotosPage extends StatefulWidget {
   const PhotosPage({super.key});
@@ -90,22 +91,25 @@ class _PhotosPageState extends State<PhotosPage> {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
-            padding: const EdgeInsets.all(32.0),
+            padding: const EdgeInsets.all(16.0),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 32),
               const Text(
                 'Photos',
-                style: TextStyle(color: Colors.white, fontSize: 25),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               const Text(
                   'Check how much space your photos are taking up on your disk and find out how to remedy it.',
                   style: TextStyle(color: Colors.grey)),
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
               if (!isScanning) ...[
                 FilledButton.icon(
-                    icon: const Icon(Icons.refresh),
+                    icon: const FaIcon(FontAwesomeIcons.arrowsRotate, size: 16),
                     onPressed: onRescanPressed,
                     style: FilledButton.styleFrom(
                       shape: RoundedRectangleBorder(

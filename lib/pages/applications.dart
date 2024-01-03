@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,7 +69,7 @@ class _ApplicationsPageState extends State<ApplicationsPage> {
       appsLength = newApps.length;
     });
     for (var app in newApps) {
-      var name = app.path.split('/').last.replaceAll('.app', ''); // TODO remove
+      // var name = app.path.split('/').last.replaceAll('.app', ''); // TODO remove
       //if (['Xcode', 'iMovie'].contains(name)) continue; // TODO remove
       if (!app.path.endsWith('.app')) continue;
       await for (final appDataChunk in scanApplication(app.path)) {
@@ -82,7 +83,7 @@ class _ApplicationsPageState extends State<ApplicationsPage> {
           load();
           return;
         }
-        ;
+
         setState(() {
           currentApp = appDataChunk;
         });
@@ -106,21 +107,24 @@ class _ApplicationsPageState extends State<ApplicationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black87,
         body: Padding(
-            padding: const EdgeInsets.all(32.0),
+            padding: const EdgeInsets.all(16.0),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const SizedBox(height: 16),
+              const SizedBox(height: 32),
               const Text(
                 'Applications',
-                style: TextStyle(color: Colors.white, fontSize: 25),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               const Text(
                   'Review long-unused apps and decide if you still need them. Also see which apps take up the most space.',
                   style: TextStyle(color: Colors.grey)),
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
               if (!isScanning) ...NotScanning else ...Scanning
             ])));
   }
@@ -140,7 +144,7 @@ class _ApplicationsPageState extends State<ApplicationsPage> {
           style: FilledButton.styleFrom(
             backgroundColor: Colors.grey,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(2.0),
+              borderRadius: BorderRadius.circular(4.0),
             ),
           ),
           label: const Text('Cancel scanning')),
@@ -155,11 +159,11 @@ class _ApplicationsPageState extends State<ApplicationsPage> {
   List<Widget> get NotScanning {
     return [
       FilledButton.icon(
-          icon: const Icon(Icons.refresh),
+          icon: const FaIcon(FontAwesomeIcons.arrowsRotate, size: 16),
           onPressed: _onRescanPressed,
           style: FilledButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(2.0),
+              borderRadius: BorderRadius.circular(4.0),
             ),
           ),
           label: Text(
@@ -183,7 +187,7 @@ class _ApplicationsPageState extends State<ApplicationsPage> {
                   Icons.schedule,
                   size: 40,
                 )),
-            const SizedBox(width: 32),
+            const SizedBox(width: 16),
             renderAppsListWithTitle(
                 appsList.apps
                     .where((element) => element.size > 5 * pow(10, 8))
