@@ -1,7 +1,6 @@
 import 'package:mac_cleaner/pages/photos.dart';
 import 'package:mac_cleaner/pages/trash.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:flutter/material.dart';
@@ -9,15 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 
 import 'package:mac_cleaner/pages/applications.dart';
-import 'dart:io';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
   WindowOptions windowOptions = const WindowOptions(
-    // size: Size(400, 600),
-    // maximumSize: Size(400, 2000),
-    // minimumSize: Size(400, 400),
+    size: Size(800, 600),
+    maximumSize: Size(800, 2000),
+    minimumSize: Size(800, 400),
     titleBarStyle: TitleBarStyle.hidden,
     center: true,
   );
